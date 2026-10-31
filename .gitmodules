@@ -1,0 +1,3 @@
+[submodule "frameworks/warprec"]
+	path = frameworks/warprec
+	url = https://github.com/sisinflab/warprec.git

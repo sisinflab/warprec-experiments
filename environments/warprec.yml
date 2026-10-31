@@ -1,0 +1,10 @@
+name: warprec
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - -e ../frameworks/warprec[all]
+      - jupyterlab

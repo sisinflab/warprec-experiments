@@ -1,0 +1,48 @@
+reader:
+  loading_strategy: dataset
+  data_type: transaction
+  reading_method: local
+  rating_type: implicit
+
+writer:
+  writing_method: local
+
+splitter:
+  test_splitting:
+    strategy: temporal_leave_k_out
+    k: 1
+
+models:
+  SASRec:
+    optimization:
+      gpu_per_trial: 1
+      cpu_per_trial: 9
+      num_workers: 8
+      properties:
+        seed: 42
+    embedding_size: 64
+    n_layers: 2
+    n_heads: 1
+    inner_size: 32
+    dropout_prob: 0.2
+    attn_dropout_prob: 0.2
+    reg_weight: 0.0001
+    weight_decay: 0.0001
+    batch_size: 4096
+    learning_rate: 0.001
+    neg_samples: 1
+    max_seq_len: 10
+    epochs: 5
+
+evaluation:
+  top_k: [10]
+  metrics: [nDCG, nDCGRendle2020, Recall]
+  strategy: sampled
+  num_negatives: 1000
+  negative_sampling: uniform
+
+general:
+  device: cuda
+
+run:
+  pause_on_signal: false
